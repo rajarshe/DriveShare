@@ -36,7 +36,6 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'model' => 'required|string',
             'year' => 'required|integer',
@@ -58,7 +57,6 @@ class CarController extends Controller
         $car->rental_pricing = $request->input('rental_pricing');
         $car->image = $imagePath;
         $car->save();
-        // dd($car);
         return redirect()->route('cars.index')->with('success', 'Car added successfully!');
     }
 
