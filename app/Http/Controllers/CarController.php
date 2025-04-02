@@ -25,7 +25,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -36,7 +36,30 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'model' => 'required|string',
+            'year' => 'required|integer',
+            'mileage' => 'required|integer',
+            'availability_calendar' => 'required',
+            'pick_up_location' => 'required|string',
+            'rental_pricing' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+        ]);
+
+        $imagePath = $request->file('image') ? $request->file('image')->store('cars', 'public') : null;
+
+        $car = new Car();
+        $car->model = $request->input('model');
+        $car->year = $request->input('year');
+        $car->mileage = $request->input('mileage');
+        $car->availability_calendar = json_encode($request->input('availability_calendar'));
+        $car->pick_up_location = $request->input('pick_up_location');
+        $car->rental_pricing = $request->input('rental_pricing');
+        $car->image = $imagePath;
+        $car->save();
+        // dd($car);
+        return redirect()->route('cars.index')->with('success', 'Car added successfully!');
     }
 
     /**
