@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $fillable = [
         'model',
@@ -18,4 +18,6 @@ class Car extends Model
         'rental_pricing',
         'image',
     ];
+
+    protected $dates = ['deleted_at']; // Enables Soft Deletes
 }
