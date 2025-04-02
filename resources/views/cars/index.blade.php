@@ -27,6 +27,7 @@
                         <h5 class="card-title">{{ $car->model }}</h5>
                         <p class="card-text">Year: {{ $car->year }}</p>
                         <p class="card-text">Mileage: {{ $car->mileage }}</p>
+                        <p class="card-text">Availability: {{ $car->availability_calendar }}</p>
                         <p class="card-text">Price: ${{ $car->rental_pricing }} per day</p>
                         <a href="{{ route('cars.show', $car->id) }}" class="btn btn-info">View Details</a>
                     </div>

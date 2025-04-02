@@ -14,7 +14,10 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::all()->map(function ($car) {
+            $car->availability_calendar = str_replace(['"', '\\'], '', $car->availability_calendar);
+            return $car;
+        });
         return view('cars.index', compact('cars'));
     }
 
