@@ -14,7 +14,7 @@
     <div class="container mt-5">
         @include('layouts.nav')
     </div>
-    <div class="container">
+    <div class="container mb-5">
         <h1>Add New Car</h1>
         <!-- Display Validation Errors -->
         @if ($errors->any())
@@ -53,10 +53,6 @@
                 <label for="rental_pricing">Rental Pricing ($)</label>
                 <input type="number" step="0.01" name="rental_pricing" class="form-control" id="rental_pricing"
                     required>
-            </div>
-            <div class="form-group">
-                <label for="image">Car Image</label>
-                <input type="file" name="image" class="form-control" id="image">
             </div>
             <div class="form-group mt-3">
                 <button type="submit" class="btn btn-primary">Save Car</button>
