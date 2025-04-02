@@ -18,8 +18,4 @@ class Car extends Model
         'rental_pricing',
         'image',
     ];
-
-    protected $casts = [
-        'availability_calendar' => 'array',
-    ];
 }
