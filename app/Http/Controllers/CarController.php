@@ -103,20 +103,20 @@ class CarController extends Controller
             'rental_pricing' => 'required|numeric',
             // 'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
         ]);
-    
+
         // // Handle image upload
         // if ($request->hasFile('image')) {
         //     // Delete old image if exists
         //     if ($car->image) {
         //         Storage::delete('public/' . $car->image);
         //     }
-    
+
         //     // Store new image
         //     $imagePath = $request->file('image')->store('cars', 'public');
         // } else {
         //     $imagePath = $car->image; // Keep old image if no new image is uploaded
         // }
-    
+
         // Update car data
         $car->update([
             'model' => $request->input('model'),
@@ -127,7 +127,7 @@ class CarController extends Controller
             'rental_pricing' => $request->input('rental_pricing'),
             'image' => $imagePath ?? null,
         ]);
-    
+
         return redirect()->route('cars.index')->with('success', 'Car updated successfully!');
     }
 
