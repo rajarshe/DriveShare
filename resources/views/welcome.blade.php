@@ -13,11 +13,44 @@
     </div>
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
         <h1 class="text-center mb-4">Welcome to DriveShare</h1>
-        <p class="text-center mb-5">A secure password management system designed to keep your sensitive information safe.</p>
-        <!-- <p>{{auth()->user()}}</p> -->
+        <!-- <p class="text-center mb-5">A secure password management system designed to keep your sensitive information safe.</p> -->
+        
         <div class="d-flex gap-3">
-            <a href="{{route('user.login')}}" class="btn btn-primary btn-lg">Login</a>
-            <a href="{{route('user.register')}}" class="btn btn-outline-primary btn-lg">Register</a>
+            <!-- <a href="{{route('user.login')}}" class="btn btn-primary btn-lg">Login</a>
+            <a href="{{route('user.register')}}" class="btn btn-outline-primary btn-lg">Register</a> -->
+        </div>
+
+        <div class="row">
+            <div class="row">
+                @foreach($cars as $car)
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <!-- Uncomment if image display is needed -->
+                            <!-- <img src="{{ asset('storage/'.$car->image) }}" class="card-img-top" alt="{{ $car->model }}"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $car->model }}</h5>
+                                <p class="card-text">Year: {{ $car->year }}</p>
+                                <p class="card-text">Mileage: {{ $car->mileage }}</p>
+                                <p class="card-text">Availability:
+                                    {{ str_replace(['"', '\\'], '', $car->availability_calendar) }}
+                                </p>
+                                <p class="card-text">Price: ${{ $car->rental_pricing }} per day</p>
+
+                                <!-- <a href="{{ route('cars.show', $car->id) }}" class="btn btn-info">View Details</a> -->
+                                <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-warning">Books</a>
+
+                                <form action="{{ route('cars.destroy', $car->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 
@@ -28,61 +61,7 @@
 
     <!-- custome js -->
     <script>
-        const passwordInput = document.getElementById('password');
-        const strengthMeter = document.getElementById('strength-meter');
-        const strengthText = document.getElementById('password-strength-text');
-        const strengthMeterSpans = strengthMeter.querySelectorAll('span');
-
-        passwordInput.addEventListener('input', () => {
-            const password = passwordInput.value;
-
-            // Calculate password strength
-            const strength = calculateStrength(password);
-
-            // Update strength meter visuals
-            updateStrengthMeter(strength);
-
-            // Update strength text
-            strengthText.innerText = getStrengthText(strength);
-        });
-
-        function calculateStrength(password) {
-            let strength = 0;
-
-            if (password.length >= 8) strength++; // Minimum length
-            if (/[a-z]/.test(password)) strength++; // Lowercase letter
-            if (/[A-Z]/.test(password)) strength++; // Uppercase letter
-            if (/\d/.test(password)) strength++; // Number
-            if (/[@$!%*?&]/.test(password)) strength++; // Special character
-
-            return strength;
-        }
-
-        function updateStrengthMeter(strength) {
-            // Reset all spans to default color
-            strengthMeterSpans.forEach((span, index) => {
-                span.className = '';
-                if (index < strength) {
-                    if (strength <= 2) {
-                        span.classList.add('weak');
-                    } else if (strength === 3 || strength === 4) {
-                        span.classList.add('medium');
-                    } else {
-                        span.classList.add('strong');
-                    }
-                }
-            });
-        }
-
-        function getStrengthText(strength) {
-            if (strength <= 2) {
-                return 'Weak: Use at least 8 characters with a mix of letters, numbers, and special symbols.';
-            } else if (strength === 3 || strength === 4) {
-                return 'Medium: Add more special characters or numbers to strengthen.';
-            } else {
-                return 'Strong: Good password!';
-            }
-        }
+        
     </script>
 </body>
 </html>
