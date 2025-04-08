@@ -28,7 +28,7 @@
                             <!-- Uncomment if image display is needed -->
                             <!-- <img src="{{ asset('storage/'.$car->image) }}" class="card-img-top" alt="{{ $car->model }}"> -->
                             <div class="card-body">
-                                <h5 class="card-title">{{ $car->model }}</h5>
+                                <h5 class="card-text">{{ $car->model }}</h5>
                                 <p class="card-text">Year: {{ $car->year }}</p>
                                 <p class="card-text">Mileage: {{ $car->mileage }}</p>
                                 <p class="card-text">Availability:
@@ -37,7 +37,7 @@
                                 <p class="card-text">Price: ${{ $car->rental_pricing }} per day</p>
 
                                 <!-- <a href="{{ route('cars.show', $car->id) }}" class="btn btn-info">View Details</a> -->
-                                <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-warning">Books</a>
+                                <a href="{{ route('booking.index', $car->id) }}" class="btn btn-warning">Booking</a>
 
                                 <form action="{{ route('cars.destroy', $car->id) }}" method="POST" class="d-inline">
                                     @csrf
