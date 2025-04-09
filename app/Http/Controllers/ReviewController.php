@@ -17,8 +17,9 @@ class ReviewController extends Controller
         // if ($booking->review) {
         //     return redirect()->back()->with('error', 'Review already submitted.');
         // }
+        $reviews = Review::where('user_id', $booking->id)->get();
 
-        return view('reviews.create', compact('booking'));
+        return view('reviews.create', compact('booking', 'reviews'));
     }
 
     public function store(Request $request, $booking_id)
