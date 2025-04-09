@@ -46,17 +46,17 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="security_answer_1" class="form-label">Security Question 1</label>
+                        <label for="security_answer_1" class="form-label">What is your pet name</label>
                         <input type="text" name="security_answer_1" id="security_answer_1" class="form-control" placeholder="Pet Name" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="security_answer_2" class="form-label">Security Question 2</label>
+                        <label for="security_answer_2" class="form-label">What is your car name</label>
                         <input type="text" name="security_answer_2" id="security_answer_2" class="form-control" placeholder="Car Name" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="security_answer_3" class="form-label">Security Question 3</label>
+                        <label for="security_answer_3" class="form-label">What is your favorite color</label>
                         <input type="text" name="security_answer_3" id="security_answer_3" class="form-control" placeholder="Favorite Color" required>
                     </div>
 
