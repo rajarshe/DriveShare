@@ -14,6 +14,7 @@ class HomeController extends Controller
             $car->availability_calendar = str_replace(['"', '\\'], '', $car->availability_calendar);
             return $car;
         });
+
         return view('welcome', compact('cars'));
     }
 

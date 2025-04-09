@@ -20,14 +20,27 @@
 
     <div class="container my-5">
         <h2 class="mb-4">User Review</h2>
+        @if ($reviews)
+            @foreach ($reviews as $review)
+                <div class="alert alert-info">
+                    <h5>You've already submitted a review for this booking:</h5>
+                    <p><strong>Rating:</strong> {{ $review->rating }} / 5</p>
+                    <p><strong>Comment:</strong> {{ $review->comment ?? 'No comment provided.' }}</p>
+                    <p class="text-muted"><small>Submitted on {{ $review->created_at->format('M d, Y') }}</small></p>
+                </div>
+            @endforeach
+        @else
+            <p>This user has no reviews.</p>
 
+        @endif
     </div>
 
     <div class="container mt-5">
         <h2>Leave a Review</h2>
-    
+
         <form method="POST" action="{{ route('reviews.store', $booking->id) }}">
             @csrf
+            <input type="hidden" value="{{$booking->id}}">
             <div class="mb-3">
                 <label for="rating" class="form-label">Rating (1 to 5)</label>
                 <select name="rating" class="form-select" required>
@@ -36,12 +49,12 @@
                     @endfor
                 </select>
             </div>
-    
+
             <div class="mb-3">
                 <label for="comment" class="form-label">Comment (optional)</label>
                 <textarea name="comment" class="form-control" rows="4"></textarea>
             </div>
-    
+
             <button type="submit" class="btn btn-primary">Submit Review</button>
         </form>
     </div>
