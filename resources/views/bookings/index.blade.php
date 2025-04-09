@@ -29,7 +29,7 @@
                     <th>Car ID</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Created At</th>
+                    <th>Review</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +49,7 @@
                         </td>
                         <td>{{ $booking->start_date }}</td>
                         <td>{{ $booking->end_date }}</td>
-                        <td>{{ \Carbon\Carbon::parse($booking->created_at)->format('Y-m-d H:i') }}</td>
+                        <td><a href="{{route('reviews.create', $booking->car->user_id)}}">Evaluate</a></td>
                     </tr>
                 @empty
                     <tr>

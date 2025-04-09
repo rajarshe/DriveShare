@@ -6,6 +6,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/booking-car/store', [BookingController::class, 'store'])->name('bookings.store');
 
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+
+    Route::get('/reviews/{booking}', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews/create/{booking}', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 require __DIR__ . '/auth.php';
