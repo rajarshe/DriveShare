@@ -32,7 +32,7 @@
                 @auth
                     {{-- Notification Bell --}}
                     <li class="nav-item position-relative me-3">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{route('notifications.index')}}">
                             <i class="bi bi-bell fs-5"></i>
                             @php
                                 $unreadCount = \App\Models\Notification::where('user_id', auth()->id())->where('is_read', false)->count();

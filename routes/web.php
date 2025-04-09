@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\BookingController;
@@ -41,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking-car/{card_id}', [BookingController::class, 'index'])->name('booking.index');
     Route::get('/booking-list', [BookingController::class, 'list'])->name('booking.list');
     Route::post('/booking-car/store', [BookingController::class, 'store'])->name('bookings.store');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 });
 
 require __DIR__ . '/auth.php';
