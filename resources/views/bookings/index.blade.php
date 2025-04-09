@@ -1,12 +1,72 @@
-{{-- {{dd($car->toArray())}} --}}
+{{-- {{ dd($bookings->toArray()) }} --}}
 
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>All Bookings</h2>
-<ul>
-    @foreach ($bookings as $booking)
-        <li>
-            Booking #{{ $booking->id }} - User: {{ $booking->user_id }}, Car: {{ $booking->car_id }}
-            {{-- <a href="{{ route('bookings.edit', $booking) }}">Edit</a> --}}
-        </li>
-    @endforeach
-</ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveShare - Bookings</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        @include('layouts.nav')
+    </div>
+
+    <div class="container my-5">
+        <h2 class="mb-4">Bookings List</h2>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Car ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($bookings as $booking)
+                    <tr>
+                        <td>{{ $booking->id }}</td>
+                        <td>
+                            {{ $booking->user->name }} <br> 
+                            {{ $booking->user->email }}
+
+                        </td>
+                        <td>
+                            {{ $booking->car->model }} <br>
+                            Year: {{ $booking->car->year }} <br>
+                            Mileage: {{ $booking->car->mileage }}
+
+                        </td>
+                        <td>{{ $booking->start_date }}</td>
+                        <td>{{ $booking->end_date }}</td>
+                        <td>{{ \Carbon\Carbon::parse($booking->created_at)->format('Y-m-d H:i') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No bookings available.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

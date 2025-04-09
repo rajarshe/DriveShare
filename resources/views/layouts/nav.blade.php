@@ -21,7 +21,7 @@
             
 
             <!-- Search Form -->
-            <form class="d-flex ms-3" action="#" method="GET">
+            <form class="d-flex ms-3" action="{{ route('cars.search') }}" method="GET">
                 <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
