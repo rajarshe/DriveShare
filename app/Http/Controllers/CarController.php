@@ -52,6 +52,7 @@ class CarController extends Controller
         $imagePath = $request->file('image') ? $request->file('image')->store('cars', 'public') : null;
 
         $car = new Car();
+        $car->user_id = auth()->user()->id;
         $car->model = $request->input('model');
         $car->year = $request->input('year');
         $car->mileage = $request->input('mileage');
