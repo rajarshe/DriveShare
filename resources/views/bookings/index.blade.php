@@ -19,7 +19,7 @@
     </div>
 
     <div class="container my-5">
-        <h2 class="mb-4">Bookings List</h2>
+        <h2 class="mb-4">Cars Rented</h2>
 
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
@@ -34,6 +34,48 @@
             </thead>
             <tbody>
                 @forelse ($bookings as $booking)
+                    <tr>
+                        <td>{{ $booking->id }}</td>
+                        <td>
+                            {{ $booking->user->name }} <br>
+                            {{ $booking->user->email }}
+
+                        </td>
+                        <td>
+                            {{ $booking->car->model }} <br>
+                            Year: {{ $booking->car->year }} <br>
+                            Mileage: {{ $booking->car->mileage }}
+
+                        </td>
+                        <td>{{ $booking->start_date }}</td>
+                        <td>{{ $booking->end_date }}</td>
+                        <td><a href="{{route('reviews.create', $booking->car->user_id)}}">Evaluate</a></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No bookings available.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="mb-4">Cars Rented Out</h2>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Car ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Booked</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($your_car_bookings as $booking)
                     <tr>
                         <td>{{ $booking->id }}</td>
                         <td>

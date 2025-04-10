@@ -18,7 +18,10 @@ class BookingController extends Controller
     public function list()
     {
         $bookings = Booking::where('user_id', auth()->user()->id)->with('user', 'car')->get();
-        return view("bookings.index", compact("bookings"));
+        $your_car_list = Car::where('user_id', auth()->id())->pluck('id');
+        $your_car_bookings = Booking::whereIn('user_id', $your_car_list)->with('user', 'car')->get();
+        // dd($your_car_booked, auth()->user()->id);
+        return view("bookings.index", compact("bookings", "your_car_bookings"));
     }
 
     public function bookingshow($car_id)

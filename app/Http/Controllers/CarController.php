@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all()->map(function ($car) {
+        $cars = Car::where('user_id', auth()->id())->get()->map(function ($car) {
             $car->availability_calendar = str_replace(['"', '\\'], '', $car->availability_calendar);
             return $car;
         });
