@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('cars', controller: CarController::class);
     Route::get('/booking-car/{card_id}', [BookingController::class, 'index'])->name('booking.index');
     Route::get('/booking-list', [BookingController::class, 'list'])->name('booking.list');
+    Route::get('/booking-payment', [BookingController::class, 'paymentPage'])->name('booking.payment');
     Route::post('/booking-car/store', [BookingController::class, 'store'])->name('bookings.store');
 
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');

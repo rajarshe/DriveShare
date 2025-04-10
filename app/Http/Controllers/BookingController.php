@@ -32,6 +32,7 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        // dd("hello");
         $validated = $request->validate([
             'user_id' => 'required|integer',
             'car_id' => 'required|integer',
@@ -59,7 +60,12 @@ class BookingController extends Controller
         ];
         $user_nonification = $this->notificationCreate($user_notficationData);
 
-        return redirect()->route('booking.list')->with('success', 'Booking created successfully.');
+        return redirect()->route('booking.payment')->with('success', 'Booking created successfully.');
+    }
+
+    public function paymentPage()
+    {
+        return view("bookings.payment");
     }
 
     function notificationCreate($req)

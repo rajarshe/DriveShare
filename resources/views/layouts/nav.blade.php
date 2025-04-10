@@ -11,13 +11,13 @@
             @auth
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cars.index') }}">Your Record</a>
+                    <a class="nav-link" href="{{ route('cars.index') }}">Your Cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cars.create') }}">Add New Record</a>
+                    <a class="nav-link" href="{{ route('cars.create') }}">Add New Car</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('booking.list') }}">Booking List</a>
+                    <a class="nav-link" href="{{ route('booking.list') }}">Booking History</a>
                 </li>
             </ul>
             @endauth

@@ -24,9 +24,9 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
                     <th>Car ID</th>
+                    <th>Car Owner's ID</th>
+                    <th>Car Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Review</th>
@@ -38,7 +38,8 @@
                         <td>{{ $booking->id }}</td>
                         <td>
                             {{ $booking->user->name }} <br>
-                            {{ $booking->user->email }}
+                            {{ $booking->user->email }}<br>
+                            <a href="mailto:{{$booking->user->email}}">Send Email</a>
 
                         </td>
                         <td>
@@ -66,12 +67,12 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
                     <th>Car ID</th>
+                    <th>Renter's ID</th>
+                    <th>Car Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Booked</th>
+                    <th>Reveiw</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +81,8 @@
                         <td>{{ $booking->id }}</td>
                         <td>
                             {{ $booking->user->name }} <br>
-                            {{ $booking->user->email }}
+                            {{ $booking->user->email }} <br>
+                            <a href="mailto:{{$booking->user->email}}">Send Email</a>
 
                         </td>
                         <td>
@@ -91,7 +93,7 @@
                         </td>
                         <td>{{ $booking->start_date }}</td>
                         <td>{{ $booking->end_date }}</td>
-                        <td><a href="{{route('reviews.create', $booking->car->user_id)}}">Evaluate</a></td>
+                        <td><a href="{{route('reviews.create', $booking->car->user_id)}}">See Review</a></td>
                     </tr>
                 @empty
                     <tr>
